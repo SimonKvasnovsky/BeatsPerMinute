@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BeatsPerMinute.MainPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:BeatsPerMinute.ViewModels"
+             x:Class="BeatsPerMinute.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
 
-    <Grid>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -13,14 +17,14 @@
         <Label
             x:Name="bpmLabel"
             Grid.Row="1"
-            Text="0"
+            Text="{Binding BPM, StringFormat='{0:N0}'}"
             HorizontalOptions="Center"
             FontSize="Header"/>
         <Button
             Grid.Row="2"
             HorizontalOptions="Center"
             WidthRequest="200"
-            Clicked="Button_Clicked"
+            Command="{Binding TapCommand}"
             Text="TAP"/>
     </Grid>
 
